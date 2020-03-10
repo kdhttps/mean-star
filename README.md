@@ -30,7 +30,7 @@ cd server
 npm i
 ```
 
-# Start
+# Start Applications
 
 ## Client
 
