@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const winston = require('winston');
-const expressWinston  = require('express-winston');
+const expressWinston = require('express-winston');
 const bodyParser = require('body-parser');
 const configuration = require('./configuration');
 const mongoose = require('mongoose');
@@ -21,13 +21,12 @@ app.use(expressWinston.logger(configuration.Logger));
 /**
  * Mongo DB Connection
  */
-mongoose.connect(process.env.DB_URL, {useUnifiedTopology: true,  useNewUrlParser: true}, (err, res) => {
-    if (err) {
-        logger.info(`err connecting to db on ${process.env.DB_URL}, err: ${err}`);
-    }
-    else {
-        logger.info(`----- Database connected on ${process.env.DB_URL} -----`);
-    }
+mongoose.connect(process.env.DB_URL, {useUnifiedTopology: true, useNewUrlParser: true}, (err, res) => {
+  if (err) {
+    logger.info(`err connecting to db on ${process.env.DB_URL}, err: ${err}`);
+  } else {
+    logger.info(`----- Database connected on ${process.env.DB_URL} -----`);
+  }
 });
 
 // Load body parser
@@ -47,7 +46,7 @@ app.use(expressWinston.errorLogger(configuration.Logger));
  * Start Server
  */
 server.listen(configuration.PORT || 3000, () => {
-    logger.info('-----------------------');
-    logger.info(`Server started successfully!, Open this URL http://localhost:${configuration.PORT || 3000}`);
-    logger.info('-----------------------');
+  logger.info('-----------------------');
+  logger.info(`Server started successfully!, Open this URL http://localhost:${configuration.PORT || 3000}`);
+  logger.info('-----------------------');
 });
