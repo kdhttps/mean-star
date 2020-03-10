@@ -13,6 +13,7 @@ MEAN STACK demo application which help you to easily start your project developm
 
 1. Node JS >= 10.x.x
 2. Mongo DB >= 4.x
+3. Angular CLI >= 8.3.x, Install it using  `npm install -g @angular/cli@8.3.20`
 
 # Install Packages
 
