@@ -21,7 +21,7 @@ app.use(expressWinston.logger(configuration.Logger));
 /**
  * Mongo DB Connection
  */
-mongoose.connect(process.env.DB_URL, {useUnifiedTopology: true, useNewUrlParser: true}, (err, res) => {
+mongoose.connect(process.env.DB_URL, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true}, (err, res) => {
   if (err) {
     logger.info(`err connecting to db on ${process.env.DB_URL}, err: ${err}`);
   } else {
