@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiURL: 'https://localhost:3000',
+  userEndpoint: '/users',
+  clientId: 'xGZxEAJhzlkuQUlWl90y1ntIX-0UDWHx',
+  opServer: 'https://kdhttps.auth0.com',
+  opServerUserInfoEndpoint: '/userinfo',
+  opServerExtraParamsInAuthRequest: {
+    audience: 'https://kdhttps.auth0.com/api/v2/'
+  },
+  redirectURI: 'http://localhost:4200/callback',
+  scope: 'openid email profile',
 };
 
 /*

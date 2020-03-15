@@ -5,6 +5,10 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {UserModule} from './user/user.module';
 import {HomeModule} from './home/home.module';
+import {LoginModule} from './login/login.module';
+import {CallbackModule} from './callback/callback.module';
+import {CoreModule} from './core';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -14,7 +18,11 @@ import {HomeModule} from './home/home.module';
     BrowserModule,
     AppRoutingModule,
     UserModule,
-    HomeModule
+    HomeModule,
+    LoginModule,
+    CallbackModule,
+    CoreModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
