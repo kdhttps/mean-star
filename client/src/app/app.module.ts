@@ -8,11 +8,12 @@ import {HomeModule} from './home/home.module';
 import {LoginModule} from './login/login.module';
 import {CallbackModule} from './callback/callback.module';
 import {CoreModule} from './core';
-import {HttpClientModule} from "@angular/common/http";
+import {HeaderComponent, SharedModule} from './shared';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +23,7 @@ import {HttpClientModule} from "@angular/common/http";
     LoginModule,
     CallbackModule,
     CoreModule,
-    HttpClientModule
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

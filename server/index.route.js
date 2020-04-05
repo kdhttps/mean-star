@@ -9,6 +9,6 @@ router.get('/health-check', (req, res) => res.status(200).send({
     message: 'Welcome !!!'
 }));
 
-router.use('/users', userRoute);
+router.use('/users', authCheck, userRoute);
 
 module.exports = router;

@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" routerLink="/home" [routerLinkActive]="'active'">Angular</a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/" [routerLinkActive]="'active'">Home</a>
+      </li>
+      <li class="nav-item" *appShowAuthed="true">
+        <a class="nav-link" routerLink="/user" [routerLinkActive]="'active'">Profile</a>
+      </li>
+      <li class="nav-item" *appShowAuthed="false">
+        <a class="nav-link" routerLink="/login" [routerLinkActive]="'active'">Login</a>
+      </li>
+    </ul>
+  </div>
+</nav>

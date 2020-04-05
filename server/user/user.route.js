@@ -4,6 +4,6 @@ const userController = require('./user.controller');
 
 router.route('/')
     .get(userController.get)
-    .post(userController.post);
+    .post(userController.save);
 
 module.exports = router;

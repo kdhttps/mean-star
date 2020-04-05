@@ -12,10 +12,6 @@ export class UserService {
   }
 
   save(user): Observable<User> {
-    if (user.id) {
-      return this.apiService.put(environment.apiURL + environment.userEndpoint + '/' + user.id, user);
-    } else {
-      return this.apiService.post(environment.apiURL + environment.userEndpoint, user);
-    }
+    return this.apiService.post(environment.apiURL + environment.userEndpoint, user);
   }
 }

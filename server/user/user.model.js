@@ -5,18 +5,18 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    username: {
+    email: {
         type: String,
         unique: true,
-        required: true
-    },
-    password: {
-        type: String,
         required: true
     },
     status: {
         type: String,
         required: true
+    },
+    lastLoginTime: {
+      type: Date,
+      default: Date.now()
     }
 }, {
     timestamps: true

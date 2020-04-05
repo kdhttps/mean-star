@@ -18,6 +18,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {BehaviorSubject, Observable, ReplaySubject} from 'rxjs';
 import {distinctUntilChanged} from 'rxjs/operators';
 import {ApiService} from './api.service';
+import {UserService} from "./user.service";
 
 @Injectable()
 export class AuthService {
@@ -35,7 +36,7 @@ export class AuthService {
   private currentUserSubject = new BehaviorSubject<any>({});
   public currentUser = this.currentUserSubject.asObservable().pipe(distinctUntilChanged());
 
-  constructor(private route: ActivatedRoute, private router: Router, private apiService: ApiService) {
+  constructor(private route: ActivatedRoute, private router: Router, private apiService: ApiService, private userService: UserService) {
     this.authorizationHandler = new RedirectRequestHandler(
       new LocalStorageBackend(),
       new NoHashQueryStringUtils(),
@@ -129,7 +130,12 @@ export class AuthService {
     if (this.getToken()) {
       this.getUserInfo()
         .subscribe(
-          (data) => this.setAuth(data),
+          (data) => {
+            this.userService.save({name: data.name, email: data.email}).subscribe(
+              (user) => this.setAuth(user),
+              (err) => this.destroyTokens()
+            );
+          },
           err => this.destroyTokens()
         );
     } else {

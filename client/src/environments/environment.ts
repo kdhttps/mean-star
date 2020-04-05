@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  apiURL: 'https://localhost:3000',
+  apiURL: 'http://localhost:3000',
+  // Application Endpoints
   userEndpoint: '/users',
+  // OP Server configuration
   clientId: 'xGZxEAJhzlkuQUlWl90y1ntIX-0UDWHx',
   opServer: 'https://kdhttps.auth0.com',
   opServerUserInfoEndpoint: '/userinfo',
