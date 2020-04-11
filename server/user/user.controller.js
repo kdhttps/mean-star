@@ -24,32 +24,32 @@ function getById(req, res) {
     })
 }
 
-function save(req, res) {
-  const body = req.body;
-  return user.findOne({email: body.email})
-    .then(function (oUser) {
-      if (oUser) {
-        logger.debug('User update operation');
-        oUser.name = body.name || oUser.name;
-        oUser.email = body.email || oUser.email;
-        oUser.lastLoginTime = Date.now();
-        return oUser.save();
-      }
+async function save(req, res) {
+  try {
+    const body = req.body;
+    const oUser = await user.findOne({email: body.email});
+    let savedUser = null;
+
+    if (oUser) {
+      logger.debug('User update operation');
+      oUser.name = body.name || oUser.name;
+      oUser.email = body.email || oUser.email;
+      oUser.lastLoginTime = Date.now();
+      savedUser = await oUser.save();
+    } else {
       logger.debug('User add operation');
       const newUser = new user({
         name: body.name,
-        email: body.email,
+        // email: body.email,
         status: 'active'
       });
-      return newUser.save();
-    })
-    .then((user) => {
-      return res.send(user);
-    })
-    .catch((error) => {
-      logger.error(error);
-      return res.status(500).send(error);
-    })
+      savedUser = await newUser.save();
+    }
+    return res.send(savedUser);
+  } catch (error) {
+    logger.error(error);
+    return res.status(500).send(error);
+  }
 }
 
 module.exports = {
