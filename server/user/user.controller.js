@@ -40,7 +40,7 @@ async function save(req, res) {
       logger.debug('User add operation');
       const newUser = new user({
         name: body.name,
-        // email: body.email,
+        email: body.email,
         status: 'active'
       });
       savedUser = await newUser.save();

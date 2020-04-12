@@ -75,8 +75,7 @@ export class AuthService {
           })
           .then((oResponse) => {
             this.saveTokens(oResponse);
-            this.isAuthenticatedSubject.next(true);
-            // this.populate();
+            this.populate();
             this.router.navigate(['/']);
           })
           .catch(oError => {
