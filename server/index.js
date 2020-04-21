@@ -12,6 +12,7 @@ const path = require('path');
 
 const app = express();
 const server = require('http').Server(app);
+const userController = require('./user/user.controller');
 
 /**
  * allow cors for only our frontend
@@ -53,8 +54,10 @@ authCheck = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: `${process.env.OP_SERVER_URL}/.well-known/jwks.json`
+    jwksUri: `${process.env.OP_SERVER_URL}/.well-known/jwks.json`,
   }),
+  isRevoked: userController.isRevokedCallback,
+  requestProperty: 'token',
   // This is the identifier we set when we created the API
   audience: `${process.env.OP_SERVER_URL}/api/v2/`,
   issuer: `${process.env.OP_SERVER_URL}/`, // e.g., your.auth0.com

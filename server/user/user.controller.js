@@ -41,12 +41,33 @@ async function login(req, res) {
 
     return res.send(savedUser);
   } catch (error) {
-    console.log(error);
     logger.error(error);
     return res.status(500).send(error);
   }
 }
 
+async function isRevokedCallback(req, payload, done) {
+  if (req.method === 'GET' && req.originalUrl === '/users/login') {
+    console.log('inside');
+    return done(null, false)
+  }
+  const authToken = req.headers.authorization.split(' ')[1];
+  const oUsers = await user.find({authTokens: authToken});
+  if(!oUsers) {
+    logger.error(`User not found with token ${authToken}`);
+    return done({message: 'User not found'}, true);
+  }
+
+  if(oUsers.length > 1) {
+    logger.error(`Multiple Users has same token ${authToken}`);
+    return done({message: 'Untrusted token'}, true);
+  }
+  const oUser = oUsers[0];
+  req.user = oUser;
+  return done(null, false);
+}
+
 module.exports = {
   login,
+  isRevokedCallback,
 };
