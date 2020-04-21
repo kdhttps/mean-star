@@ -127,16 +127,10 @@ export class AuthService {
   // This runs once on application startup
   populate() {
     if (this.getToken()) {
-      this.getUserInfo()
-        .subscribe(
-          (data) => {
-            this.userService.save({name: data.name, email: data.email}).subscribe(
-              (user) => this.setAuth(user),
-              (err) => this.destroyTokens()
-            );
-          },
-          err => this.destroyTokens()
-        );
+      this.userService.login().subscribe(
+        (user) => this.setAuth(user),
+        (err) => this.destroyTokens()
+      );
     } else {
       this.destroyTokens();
     }
@@ -145,9 +139,5 @@ export class AuthService {
   setAuth(userInfo) {
     this.currentUserSubject.next(userInfo);
     this.isAuthenticatedSubject.next(true);
-  }
-
-  getUserInfo(): Observable<any> {
-    return this.apiService.get(environment.opServer + environment.opServerUserInfoEndpoint);
   }
 }

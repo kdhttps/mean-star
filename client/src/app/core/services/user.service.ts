@@ -11,7 +11,7 @@ export class UserService {
     return this.apiService.get(environment.apiURL + environment.userEndpoint);
   }
 
-  save(user): Observable<User> {
-    return this.apiService.post(environment.apiURL + environment.userEndpoint, user);
+  login(): Observable<User> {
+    return this.apiService.get(environment.apiURL + environment.userLoginEndpoint);
   }
 }

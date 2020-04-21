@@ -2,3 +2,4 @@
 server/application.log
 server/node_modules
 client/node_modules
+server/client

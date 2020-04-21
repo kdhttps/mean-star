@@ -21,6 +21,7 @@
     "express": "^4.17.1",
     "express-jwt": "^5.3.1",
     "express-winston": "^4.0.3",
+    "got": "^10.7.0",
     "jwks-rsa": "^1.7.0",
     "mongoose": "^5.9.4",
     "winston": "^3.2.1"
