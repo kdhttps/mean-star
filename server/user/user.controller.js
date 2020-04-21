@@ -1,58 +1,52 @@
+const got = require('got');
 const user = require('./user.model');
 
-function get(req, res) {
-  return user.find({})
-    .then((users) => {
-      return res.send(users);
-    })
-    .catch((error) => {
-      logger.error('Failed to get User data');
-      logger.error(error);
-      return res.status(500).send(error);
-    })
-}
-
-function getById(req, res) {
-  return user.findOne({id: req.params.id})
-    .then((user) => {
-      return res.send(user);
-    })
-    .catch((error) => {
-      logger.error('Failed to get User data');
-      logger.error(error);
-      return res.status(500).send(error);
-    })
-}
-
-async function save(req, res) {
+async function login(req, res) {
   try {
-    const body = req.body;
-    const oUser = await user.findOne({email: body.email});
+    const authToken = req.headers.authorization.split(' ')[1];
+    const option = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${authToken}`
+      },
+      url: process.env.OP_SERVER_URL + process.env.USERINFO_ENDPOINT,
+      responseType: 'json',
+    };
+
+    const response = await got(option);
+    const userInfo = response.body;
+    const oUser = await user.findOne({email: userInfo.email});
     let savedUser = null;
 
     if (oUser) {
       logger.debug('User update operation');
-      oUser.name = body.name || oUser.name;
-      oUser.email = body.email || oUser.email;
+      oUser.name = userInfo.name || oUser.name;
+      oUser.email = userInfo.email || oUser.email;
       oUser.lastLoginTime = Date.now();
+      if(!(oUser.authTokens && oUser.authTokens.indexOf(authToken))) {
+        oUser.authTokens = [authToken];
+      }
+
       savedUser = await oUser.save();
     } else {
       logger.debug('User add operation');
       const newUser = new user({
-        name: body.name,
-        email: body.email,
-        status: 'active'
+        name: userInfo.name,
+        email: userInfo.email,
+        status: 'active',
+        authTokens: [authToken]
       });
       savedUser = await newUser.save();
     }
+
     return res.send(savedUser);
   } catch (error) {
+    console.log(error);
     logger.error(error);
     return res.status(500).send(error);
   }
 }
 
 module.exports = {
-  get,
-  save
+  login,
 };

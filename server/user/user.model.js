@@ -26,7 +26,10 @@ const userSchema = mongoose.Schema({
   likeBlogs: [{
     type: ObjectId,
     ref: 'Blog'
-  }]
+  }],
+  authTokens: [{
+    type: String,
+  }],
 }, {
   timestamps: true
 });
