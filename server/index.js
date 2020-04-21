@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const jwt = require('express-jwt');
 const jwks = require('jwks-rsa');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 const server = require('http').Server(app);
@@ -68,6 +69,14 @@ app.use(require('./index.route'));
 // error Logging
 app.use(expressWinston.errorLogger(configuration.Logger));
 
+
+// Statically serve client
+if (process.env.PRODUCTION) {
+  app.use(express.static(__dirname + '/client'));
+  app.get('/*', function(req,res) {
+    res.sendFile(path.join(__dirname+'/client/index.html'));
+  });
+}
 /**
  * Start Server
  */
