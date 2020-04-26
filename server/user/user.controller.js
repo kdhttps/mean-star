@@ -1,5 +1,9 @@
 const got = require('got');
+const LRU = require('lru-cache');
+
 const user = require('./user.model');
+const caches = new LRU(1000);
+const utils = require('../common/utils');
 
 async function login(req, res) {
   try {
@@ -23,10 +27,9 @@ async function login(req, res) {
       oUser.name = userInfo.name || oUser.name;
       oUser.email = userInfo.email || oUser.email;
       oUser.lastLoginTime = Date.now();
-      if(!(oUser.authTokens && oUser.authTokens.indexOf(authToken))) {
-        oUser.authTokens = [authToken];
+      if (oUser.authTokens.indexOf(authToken) < 0) {
+        oUser.authTokens.push(authToken)
       }
-
       savedUser = await oUser.save();
     } else {
       logger.debug('User add operation');
@@ -47,24 +50,39 @@ async function login(req, res) {
 }
 
 async function isRevokedCallback(req, payload, done) {
-  if (req.method === 'GET' && req.originalUrl === '/users/login') {
-    console.log('inside');
-    return done(null, false)
-  }
-  const authToken = req.headers.authorization.split(' ')[1];
-  const oUsers = await user.find({authTokens: authToken});
-  if(!oUsers) {
-    logger.error(`User not found with token ${authToken}`);
-    return done({message: 'User not found'}, true);
-  }
+  try {
+    if (req.method === 'GET' && req.originalUrl === '/users/login') {
+      return done(null, false)
+    }
+    const authToken = req.headers.authorization.split(' ')[1];
+    let cachedUser = caches.get(authToken);
+    console.log('cached user', cachedUser);
+    if (cachedUser) {
+      logger.debug('Fetched user from cache');
+      req.user = cachedUser;
+    } else {
+      logger.debug('Fetching user from db');
+      const oUsers = await user.find({authTokens: authToken});
+      if (!oUsers) {
+        logger.error(`User not found with token ${authToken}`);
+        return done({message: 'User not found'}, true);
+      }
 
-  if(oUsers.length > 1) {
-    logger.error(`Multiple Users has same token ${authToken}`);
-    return done({message: 'Untrusted token'}, true);
+      if (oUsers.length > 1) {
+        logger.error(`Multiple Users has same token ${authToken}`);
+        return done({message: 'Untrusted token'}, true);
+      }
+      req.user = oUsers[0];
+    }
+
+    // decode token
+    const payload = utils.decode(authToken);
+    caches.set(authToken, req.user, payload.exp - payload.iat);
+    return done(null, false);
+  } catch (error) {
+    logger.error(error);
+    return res.status(500).send(error);
   }
-  const oUser = oUsers[0];
-  req.user = oUser;
-  return done(null, false);
 }
 
 module.exports = {

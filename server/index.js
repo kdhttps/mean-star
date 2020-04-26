@@ -9,6 +9,7 @@ const jwt = require('express-jwt');
 const jwks = require('jwks-rsa');
 const cors = require('cors');
 const path = require('path');
+const { ValidationError } = require('express-validation');
 
 const app = express();
 const server = require('http').Server(app);
@@ -80,6 +81,18 @@ if (process.env.PRODUCTION) {
     res.sendFile(path.join(__dirname+'/client/index.html'));
   });
 }
+
+/**
+ * Handle errors
+ */
+app.use(function(err, req, res, next) {
+  if (err instanceof ValidationError) {
+    return res.status(err.statusCode).json(err)
+  }
+
+  return res.status(500).json(err)
+});
+
 /**
  * Start Server
  */
