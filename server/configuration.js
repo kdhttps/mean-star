@@ -1,5 +1,5 @@
 const {format, transports} = require('winston');
-const { timestamp, colorize, printf, errors, prettyPrint } = format;
+const { timestamp, colorize, printf, errors } = format;
 const { Console, File } = transports;
 
 module.exports = {

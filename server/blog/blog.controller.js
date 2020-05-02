@@ -7,17 +7,42 @@ async function save(req, res) {
     const userId = req.user._id;
 
     __logger.debug('Blog add operation');
-    const oBlog = await new blog({
+    const oBlog = new blog({
       title: body.title,
       content: body.content,
       status: body.status,
       publisher: userId,
     });
     const saveBlog = await oBlog.save();
-    __logger.debug('User blog update operation');
+
+    __logger.debug('User blogs update operation');
     const oUser = await user.findById(userId);
     oUser.blogs.push(oBlog);
-    await oUser.save();
+    await oUser.save({
+      title: body.title,
+      content: body.content,
+      status: body.status,
+      publisher: userId,
+    });
+
+    return res.send(saveBlog);
+  } catch (error) {
+    __logger.error(error);
+    return res.status(500).send(error);
+  }
+}
+
+async function update(req, res) {
+  try {
+    const body = req.body;
+
+    __logger.debug('Blog update operation');
+    const oBlog = await blog.findById(req.params.id);
+    const saveBlog = await oBlog.save({
+      title: body.title || oBlog.title,
+      content: body.content || oBlog.content,
+      status: body.status || oBlog.status,
+    });
 
     return res.send(saveBlog);
   } catch (error) {
@@ -28,4 +53,5 @@ async function save(req, res) {
 
 module.exports = {
   save,
+  update,
 };

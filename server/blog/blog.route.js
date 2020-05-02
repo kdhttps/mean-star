@@ -7,4 +7,7 @@ const validationSchema = require('../common/validation-schema');
 router.route('/')
     .post(validate(validationSchema.blogSAVE), blogController.save);
 
+router.route('/:id')
+    .put(validate(validationSchema.blogUpdate), blogController.save);
+
 module.exports = router;
