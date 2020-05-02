@@ -23,7 +23,7 @@ async function login(req, res) {
     let savedUser = null;
 
     if (oUser) {
-      logger.debug('User update operation');
+      __logger.debug('User update operation');
       oUser.name = userInfo.name || oUser.name;
       oUser.email = userInfo.email || oUser.email;
       oUser.lastLoginTime = Date.now();
@@ -32,7 +32,7 @@ async function login(req, res) {
       }
       savedUser = await oUser.save();
     } else {
-      logger.debug('User add operation');
+      __logger.debug('User add operation');
       const newUser = new user({
         name: userInfo.name,
         email: userInfo.email,
@@ -44,7 +44,7 @@ async function login(req, res) {
 
     return res.send(savedUser);
   } catch (error) {
-    logger.error(error);
+    __logger.error(error);
     return res.status(500).send(error);
   }
 }
@@ -58,18 +58,18 @@ async function isRevokedCallback(req, payload, done) {
     let cachedUser = caches.get(authToken);
     console.log('cached user', cachedUser);
     if (cachedUser) {
-      logger.debug('Fetched user from cache');
+      __logger.debug('Fetched user from cache');
       req.user = cachedUser;
     } else {
-      logger.debug('Fetching user from db');
+      __logger.debug('Fetching user from db');
       const oUsers = await user.find({authTokens: authToken});
       if (!oUsers) {
-        logger.error(`User not found with token ${authToken}`);
+        __logger.error(`User not found with token ${authToken}`);
         return done({message: 'User not found'}, true);
       }
 
       if (oUsers.length > 1) {
-        logger.error(`Multiple Users has same token ${authToken}`);
+        __logger.error(`Multiple Users has same token ${authToken}`);
         return done({message: 'Untrusted token'}, true);
       }
       req.user = oUsers[0];
@@ -80,7 +80,7 @@ async function isRevokedCallback(req, payload, done) {
     caches.set(authToken, req.user, payload.exp - payload.iat);
     return done(null, false);
   } catch (error) {
-    logger.error(error);
+    __logger.error(error);
     return res.status(500).send(error);
   }
 }

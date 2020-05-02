@@ -5,6 +5,6 @@ const { validate } = require('express-validation');
 const validationSchema = require('../common/validation-schema');
 
 router.route('/')
-    .post(validate(validationSchema.blogSAVE, {}, {}), blogController.save);
+    .post(validate(validationSchema.blogSAVE), blogController.save);
 
 module.exports = router;

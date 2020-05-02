@@ -28,7 +28,7 @@ app.use(cors(corsOptions));
  * winston.Logger
  * logger for specified log message like console.log
  */
-logger = winston.createLogger(configuration.Logger);
+global.__logger = winston.createLogger(configuration.Logger);
 /**
  * logger for every HTTP request comes to app
  */
@@ -39,9 +39,9 @@ app.use(expressWinston.logger(configuration.Logger));
  */
 mongoose.connect(process.env.DB_URL, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true}, (err, res) => {
   if (err) {
-    logger.info(`err connecting to db on ${process.env.DB_URL}, err: ${err}`);
+    __logger.info(`err connecting to db on ${process.env.DB_URL}, err: ${err}`);
   } else {
-    logger.info(`----- Database connected on ${process.env.DB_URL} -----`);
+    __logger.info(`----- Database connected on ${process.env.DB_URL} -----`);
   }
 });
 
@@ -97,7 +97,7 @@ app.use(function(err, req, res, next) {
  * Start Server
  */
 server.listen(configuration.PORT || 3000, () => {
-  logger.info('-----------------------');
-  logger.info(`Server started successfully!, Open this URL http://localhost:${configuration.PORT || 3000}`);
-  logger.info('-----------------------');
+  __logger.info('-----------------------');
+  __logger.info(`Server started successfully!, Open this URL http://localhost:${configuration.PORT || 3000}`);
+  __logger.info('-----------------------');
 });
