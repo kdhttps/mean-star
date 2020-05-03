@@ -12,7 +12,8 @@ const blogSchema = mongoose.Schema({
   },
   status: {
     type: String,
-    required: true
+    required: true,
+    enum: ['PUBLISHED', 'UNPUBLISHED'],
   },
   publisher: {
     type: ObjectId,

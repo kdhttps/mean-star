@@ -51,7 +51,20 @@ async function update(req, res) {
   }
 }
 
+async function getMyBlogs(req, res) {
+  try {
+    const userId = req.user._id;
+    __logger.debug('Get My Blogs ', userId);
+    const blogs = await blog.find({ publisher: userId });
+    return res.send(blogs);
+  } catch (error) {
+    __logger.error(error);
+    return res.status(500).send(error);
+  }
+}
+
 module.exports = {
   save,
   update,
+  getMyBlogs,
 };
