@@ -8,6 +8,10 @@ export const environment = {
   // Application Endpoints
   userEndpoint: '/users',
   userLoginEndpoint: '/users/login',
+
+  // Blog endpoint
+  blogEndpoint: '/blogs',
+
   // OP Server configuration
   clientId: 'xGZxEAJhzlkuQUlWl90y1ntIX-0UDWHx',
   opServer: 'https://kdhttps.auth0.com',

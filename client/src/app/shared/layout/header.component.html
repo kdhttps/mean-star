@@ -6,6 +6,9 @@
         <a class="nav-link" routerLink="/" [routerLinkActive]="'active'">Home</a>
       </li>
       <li class="nav-item" *appShowAuthed="true">
+        <a class="nav-link" routerLink="/blog" [routerLinkActive]="'active'">Blog</a>
+      </li>
+      <li class="nav-item" *appShowAuthed="true">
         <a class="nav-link" routerLink="/user" [routerLinkActive]="'active'">Profile</a>
       </li>
       <li class="nav-item" *appShowAuthed="false">
