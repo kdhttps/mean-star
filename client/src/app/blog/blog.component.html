@@ -1,16 +1,18 @@
 <div class="container-fluid mt-3">
   <a class="btn btn-primary mb-1" routerLink="/blog/manage">Create Blog</a>
 
-  <ng-template>
-    <div class="card" *ngFor="let blog of []">
+  <div *ngIf="blogs && blogs.length">
+    <div class="card mt-3" *ngFor="let blog of blogs">
+      <div class="card-header">
+        {{blog.title}}
+      </div>
       <div class="card-body">
-        <h5 class="card-title">{{blog.title}}</h5>
         <p class="card-text">{{blog.content}}</p>
       </div>
     </div>
-  </ng-template>
+  </div>
 
-  <div class="card">
+  <div class="card" *ngIf="blogs && !blogs.length">
     <div class="card-body">
       <h5 class="card-title">Write some blogs, All the best !!!</h5>
     </div>

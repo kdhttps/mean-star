@@ -10,6 +10,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class BlogManageComponent implements OnInit {
   blogForm: FormGroup;
   blog: Blog = {} as Blog;
+  blogStatus = ['UNPUBLISHED', 'PUBLISHED'];
 
   constructor(
     private blogService: BlogService,

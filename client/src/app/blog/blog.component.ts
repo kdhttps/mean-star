@@ -8,7 +8,8 @@ import { Blog } from '../core';
 })
 export class BlogComponent implements OnInit {
   blogs: Blog[] = null;
-
+  hello = "hello";
+  
   constructor(
     private blogService: BlogService
   ) { }

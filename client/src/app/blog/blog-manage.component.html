@@ -1,16 +1,17 @@
 <div class="container-fluid mt-3">
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title">blog</h5>
       <form [formGroup]="blogForm">
         <div class="form-group">
-          <input class="form-control mb-2 mr-sm-2" formControlName="title" type="text" placeholder="Enter title"/>
+          <input class="form-control form-control-lg mb-2 mr-sm-2" formControlName="title" type="text" placeholder="Enter title"/>
         </div>
         <div class="form-group">
-          <input class="form-control mb-2 mr-sm-2" formControlName="content" type="text" placeholder="Enter description"/>
+          <textarea class="form-control form-control-lg mb-2 mr-sm-2" formControlName="content" placeholder="Enter description" rows="3"></textarea> 
         </div>
         <div class="form-group">
-          <input class="form-control mb-2 mr-sm-2" formControlName="content" type="text" placeholder="Enter description"/>
+          <select class="form-control form-control-lg">
+            <option *ngFor="let s of blogStatus" value="{{s}}">{{s}}</option>
+          </select>
         </div>
         <button class="btn btn-success" (click)="submitForm()">Add</button>
       </form>
