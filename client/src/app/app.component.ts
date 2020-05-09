@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AuthService} from './core/services';
+import { AuthService } from './core/services';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,9 @@ import {AuthService} from './core/services';
 export class AppComponent {
   title = 'client';
 
-  constructor(private authService: AuthService) {
+  constructor(
+    private authService: AuthService,
+  ) {
     this.authService.populate();
   }
 }

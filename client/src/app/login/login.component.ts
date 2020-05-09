@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../core/services';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../core/services';
 
 @Component({
   selector: 'app-login-page',
@@ -7,7 +7,9 @@ import {AuthService} from '../core/services';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService) {
+  constructor(
+    private authService: AuthService,
+  ) {
     authService.redirect();
   }
 

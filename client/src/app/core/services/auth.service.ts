@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   AuthorizationServiceConfigurationJson,
   AuthorizationServiceConfiguration,
@@ -12,13 +12,13 @@ import {
   GRANT_TYPE_AUTHORIZATION_CODE,
   TokenRequest
 } from '@openid/appauth';
-import {NoHashQueryStringUtils} from '../no-hash-query-string-utils';
-import {environment} from '../../../environments/environment';
-import {ActivatedRoute, Router} from '@angular/router';
-import {BehaviorSubject, Observable, ReplaySubject} from 'rxjs';
-import {distinctUntilChanged} from 'rxjs/operators';
-import {ApiService} from './api.service';
-import {UserService} from "./user.service";
+import { NoHashQueryStringUtils } from '../no-hash-query-string-utils';
+import { environment } from '../../../environments/environment';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
+import { ApiService } from './api.service';
+import { UserService } from "./user.service";
 
 @Injectable()
 export class AuthService {
@@ -36,7 +36,11 @@ export class AuthService {
   private currentUserSubject = new BehaviorSubject<any>({});
   public currentUser = this.currentUserSubject.asObservable().pipe(distinctUntilChanged());
 
-  constructor(private route: ActivatedRoute, private router: Router, private apiService: ApiService, private userService: UserService) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private apiService: ApiService,
+    private userService: UserService) {
     this.authorizationHandler = new RedirectRequestHandler(
       new LocalStorageBackend(),
       new NoHashQueryStringUtils(),
