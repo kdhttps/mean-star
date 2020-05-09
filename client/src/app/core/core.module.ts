@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
-import { ApiService, AuthService, UserService, BlogService } from './services';
+import { ApiService, AuthService, UserService, BlogService, ConstantsService } from './services';
 import { HttpTokenInterceptor } from './interceptors';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { MessagesService } from './services/messages.service';
 
 @NgModule({
   imports: [
@@ -14,6 +15,8 @@ import { CommonModule } from '@angular/common';
     UserService,
     AuthService,
     BlogService,
+    ConstantsService,
+    MessagesService,
   ],
   declarations: []
 })
