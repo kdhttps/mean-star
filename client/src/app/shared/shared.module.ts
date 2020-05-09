@@ -23,7 +23,8 @@ import { ToastService } from './toast-service';
     ShowAuthedDirective,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastsContainer,
   ],
   providers: [
     ToastService,

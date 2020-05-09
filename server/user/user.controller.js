@@ -56,7 +56,7 @@ async function isRevokedCallback(req, payload, done) {
     }
     const authToken = req.headers.authorization.split(' ')[1];
     let cachedUser = caches.get(authToken);
-    console.log('cached user', cachedUser);
+    
     if (cachedUser) {
       __logger.debug('Fetched user from cache');
       req.user = cachedUser;
