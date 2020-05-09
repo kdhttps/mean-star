@@ -44,6 +44,7 @@ export class BlogManageComponent implements OnInit {
         this.toastService.show(this.message.add(this.message.blog), { classname: 'bg-success text-light' });
         this.router.navigate(['/blog']);
       }, (error) => {
+        this.toastService.show(this.message.error(this.message.blog, error.message), { classname: 'bg-danger text-light' });
         this.blogForm = this.fb.group({
           title: '',
           content: '',

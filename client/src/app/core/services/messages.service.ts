@@ -8,4 +8,8 @@ export class MessagesService {
   add(module: string): string {
     return `${module} added successfully !`
   }
+
+  error(module: string, errorTraceMessage: string): string {
+    return `Failed to add ${module}: ${errorTraceMessage}`
+  }
 }
