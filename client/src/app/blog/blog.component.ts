@@ -11,7 +11,7 @@ export class BlogComponent implements OnInit {
   hello = "hello";
   
   constructor(
-    private blogService: BlogService
+    private blogService: BlogService,
   ) { }
 
   ngOnInit(): void {

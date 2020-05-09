@@ -63,8 +63,20 @@ async function getMyBlogs(req, res) {
   }
 }
 
+
+async function getBlogs(req, res) {
+  try {
+    const blogs = await blog.find();
+    return res.send(blogs);
+  } catch (error) {
+    __logger.error(error);
+    return res.status(500).send(error);
+  }
+}
+
 module.exports = {
   save,
   update,
   getMyBlogs,
+  getBlogs,
 };
