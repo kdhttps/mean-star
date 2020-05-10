@@ -7,8 +7,10 @@ import { User } from "../../core/models";
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
+  navbarOpen = false;
+
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
   ) { }
 
   currentUser: User;
@@ -19,5 +21,9 @@ export class HeaderComponent implements OnInit {
         this.currentUser = userData;
       }
     );
+  }
+
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
   }
 }
