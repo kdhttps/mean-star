@@ -25,6 +25,10 @@ export class BlogService {
     return this.apiService.get(`${environment.apiURL}${this._constant.blogEndpoint}/user`);
   }
 
+  getBlogs(): Observable<Blog[]> {
+    return this.apiService.get(`${environment.apiURL}${this._constant.blogEndpoint}/ls`);
+  }
+
   getById(id: String): Observable<Blog[]> {
     return this.apiService.get(`${environment.apiURL}${this._constant.blogEndpoint}/${id}`);
   }

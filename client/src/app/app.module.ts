@@ -10,6 +10,8 @@ import { CallbackModule } from './callback/callback.module';
 import { CoreModule } from './core';
 import { HeaderComponent, SharedModule } from './shared';
 import { BlogModule } from './blog/blog.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { BlogModule } from './blog/blog.module';
     CoreModule,
     SharedModule,
     BlogModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

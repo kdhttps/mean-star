@@ -13,7 +13,7 @@ import { ToastService } from './toast-service';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
   ],
   declarations: [
     ShowAuthedDirective,
