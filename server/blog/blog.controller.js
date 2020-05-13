@@ -66,7 +66,7 @@ async function getMyBlogs(req, res) {
 
 async function getBlogs(req, res) {
   try {
-    const blogs = await blog.find();
+    const blogs = await blog.find({ status: 'PUBLISHED' });
     return res.send(blogs);
   } catch (error) {
     __logger.error(error);
