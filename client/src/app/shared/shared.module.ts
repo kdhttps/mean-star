@@ -6,16 +6,30 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastsContainer } from './toasts-container.component';
 import { ToastService } from './toast-service';
+import { HeaderComponent } from './layout';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from '../app-routing.module';
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { faPlusSquare, faEdit, faHome } from '@fortawesome/free-solid-svg-icons';
+import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 @NgModule({
   imports: [
+    BrowserModule,
     HttpClientModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    FontAwesomeModule,
   ],
   declarations: [
+    HeaderComponent,
     ShowAuthedDirective,
     ToastsContainer,
   ],
@@ -25,11 +39,17 @@ import { ToastService } from './toast-service';
     FormsModule,
     ReactiveFormsModule,
     ToastsContainer,
+    HeaderComponent,
+    AppRoutingModule,
   ],
   providers: [
     ToastService,
   ],
 })
 export class SharedModule {
-
+  constructor(
+    private library: FaIconLibrary,
+  ) {
+    library.addIcons(faGithub, faTwitter, faEdit, faHome, faPlusSquare, faEdit);
+  }
 }
