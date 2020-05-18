@@ -21,11 +21,21 @@ export class BlogManageComponent implements OnInit {
     private router: Router,
     private message: MessagesService,
   ) {
-    this.blogForm = this.fb.group({
-      title: '',
-      content: '',
-      status: 'UNPUBLISHED',
-    });
+    const historyBlog = history.state.data;
+    if(historyBlog && historyBlog._id) {
+      this.blogForm = this.fb.group({
+        title: historyBlog.title,
+        content: historyBlog.content,
+        status: historyBlog.status,
+      });
+      this.blog._id = historyBlog._id;
+    } else {
+      this.blogForm = this.fb.group({
+        title: '',
+        content: '',
+        status: 'UNPUBLISHED',
+      });
+    }
    }
 
   ngOnInit(): void {

@@ -38,11 +38,11 @@ async function update(req, res) {
 
     __logger.debug('Blog update operation');
     const oBlog = await blog.findById(req.params.id);
-    const saveBlog = await oBlog.save({
-      title: body.title || oBlog.title,
-      content: body.content || oBlog.content,
-      status: body.status || oBlog.status,
-    });
+    oBlog.title = body.title || oBlog.title;
+    oBlog.content = body.content || oBlog.content;
+    oBlog.status = body.status || oBlog.status;
+
+    const saveBlog = await oBlog.save();
 
     return res.send(saveBlog);
   } catch (error) {

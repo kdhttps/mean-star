@@ -34,6 +34,11 @@ export class BlogService {
   }
 
   save(blog: Blog): Observable<Blog> {
+    const id = blog._id;
+    delete blog._id;
+    if (id) {
+      return this.apiService.put(`${environment.apiURL}${this._constant.blogEndpoint}/${id}`, blog);  
+    }
     return this.apiService.post(environment.apiURL + this._constant.blogEndpoint, blog);
   }
 
