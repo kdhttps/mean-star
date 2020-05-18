@@ -14,6 +14,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faEdit, faHome, faPlus, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
     BrowserAnimationsModule,
     AppRoutingModule,
     FontAwesomeModule,
+    MarkdownModule.forRoot(),
   ],
   declarations: [
     HeaderComponent,
@@ -42,6 +44,7 @@ import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
     HeaderComponent,
     AppRoutingModule,
     FontAwesomeModule,
+    MarkdownModule,
   ],
   providers: [
     ToastService,

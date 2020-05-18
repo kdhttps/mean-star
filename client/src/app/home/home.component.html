@@ -6,7 +6,7 @@
   </div>
   <div class="row">
     <ng-template ngIf="blogs && blogs.length">
-      <div class="col-sm-6" *ngFor="let blog of blogs">
+      <a *ngFor="let blog of blogs" [routerLink]="['/blog/view/', blog._id]" class="blog col-sm-6">
         <div class="card text-secondary border-success mb-3">
           <div class="card-header">
             <h3>{{blog.title}}</h3>
@@ -18,7 +18,7 @@
             <fa-icon [icon]="['fas', 'heart']"></fa-icon>
           </div>
         </div>
-      </div>
+      </a>
     </ng-template>
   </div>
 
