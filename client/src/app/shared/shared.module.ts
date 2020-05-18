@@ -12,7 +12,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app-routing.module';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { faEdit, faHome, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faHome, faPlus, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 @NgModule({
@@ -51,6 +51,6 @@ export class SharedModule {
   constructor(
     private library: FaIconLibrary,
   ) {
-    library.addIcons(faGithub, faTwitter, faEdit, faHome, faPlus, faEdit);
+    library.addIcons(faGithub, faTwitter, faEdit, faHome, faPlus, faEdit, faHeart);
   }
 }

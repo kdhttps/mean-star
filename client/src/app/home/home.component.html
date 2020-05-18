@@ -14,6 +14,9 @@
           <div class="card-body">
             <p class="card-text">{{blog.content.length > 300 ? blog.content.substr(0, 300) : blog.content}} ...</p>
           </div>
+          <div class="card-footer text-muted">
+            <fa-icon [icon]="['fas', 'heart']"></fa-icon>
+          </div>
         </div>
       </div>
     </ng-template>
