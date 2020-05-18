@@ -9,11 +9,11 @@
           <textarea class="form-control form-control-lg mb-2 mr-sm-2" formControlName="content" placeholder="Enter description" rows="3"></textarea> 
         </div>
         <div class="form-group">
-          <select class="form-control form-control-lg">
+          <select class="form-control form-control-lg" formControlName="status">
             <option *ngFor="let s of blogStatus" value="{{s}}">{{s}}</option>
           </select>
         </div>
-        <button class="btn btn-success" (click)="submitForm()">Add</button>
+        <button class="btn btn-success" (click)="submitForm()">{{this.blog._id ? 'Update' : 'Add'}}</button>
       </form>
     </div>
   </div>
