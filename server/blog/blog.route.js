@@ -7,11 +7,11 @@ const validationSchema = require('../common/validation-schema');
 router.route('/')
     .post(validate(validationSchema.blogSAVE), blogController.save);
 
+router.route('/user')
+    .get(blogController.getMyBlogs);
+
 router.route('/:id')
     .put(validate(validationSchema.blogUpdate), blogController.update)
     .get(validate(validationSchema.blogGetById), blogController.getBlogById);
-
-router.route('/user')
-    .get(blogController.getMyBlogs);
 
 module.exports = router;
