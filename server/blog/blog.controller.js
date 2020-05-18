@@ -74,9 +74,20 @@ async function getBlogs(req, res) {
   }
 }
 
+async function getBlogById(req, res) {
+  try {
+    const oBlog = await blog.findById(req.params.id);
+    return res.send(oBlog);
+  } catch (error) {
+    __logger.error(error);
+    return res.status(500).send(error);
+  }
+}
+
 module.exports = {
   save,
   update,
   getMyBlogs,
   getBlogs,
+  getBlogById,
 };

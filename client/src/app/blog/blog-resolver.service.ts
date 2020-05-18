@@ -10,13 +10,12 @@ export class BlogResolver implements Resolve<Blog> {
   constructor(
     private blogService: BlogService,
     private router: Router,
-  ) {}
+  ) { }
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> {
-    debugger
     return this.blogService.getById(route.params.id)
       .pipe(catchError((err) => this.router.navigateByUrl('/')));
   }

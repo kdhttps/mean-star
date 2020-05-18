@@ -8,7 +8,8 @@ router.route('/')
     .post(validate(validationSchema.blogSAVE), blogController.save);
 
 router.route('/:id')
-    .put(validate(validationSchema.blogUpdate), blogController.update);
+    .put(validate(validationSchema.blogUpdate), blogController.update)
+    .get(validate(validationSchema.blogGetById), blogController.getBlogById);
 
 router.route('/user')
     .get(blogController.getMyBlogs);
