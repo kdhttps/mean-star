@@ -1,2 +1,2 @@
 release: ./release-tasks.sh
-web: npm start
+web: cd server && npm start
