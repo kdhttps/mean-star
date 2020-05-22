@@ -1,7 +1,7 @@
 FROM node:10
 
 # Create app directory
-WORKDIR /usr/src/app
+# WORKDIR /usr/src/app #Currently not using this as heroku not support
 
 ENV PRODUCTION=true
 
@@ -25,6 +25,4 @@ COPY ./client ./client
 RUN npm install -g @angular/cli@8.3.20
 RUN cd ./client && ng build && cp -R dist/client ../
 
-EXPOSE 3000
-
-CMD [ "npm", "start" ]
+ENTRYPOINT [ "npm", "start" ]
