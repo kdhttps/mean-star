@@ -1,0 +1,23 @@
+version: "3.7"
+networks:
+ mean-net:
+  driver: bridge
+services:
+  mean:
+    networks:
+      - mean-net
+    environment:
+      PRODUCTION: "true"
+      PORT: 3000
+      DB_URL: mongodb://mongo:27017/mean
+    build: .
+    ports:
+    - "3000:3000"
+    depends_on:
+    - mongo
+  mongo:
+    image: mongo
+    networks:
+      - mean-net
+    ports:
+    - "27017:27017"
