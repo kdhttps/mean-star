@@ -144,4 +144,9 @@ export class AuthService {
     this.currentUserSubject.next(userInfo);
     this.isAuthenticatedSubject.next(true);
   }
+
+  logout() {
+    this.destroyTokens();
+    window.location.href = `${environment.opServer}/v2/logout?returnTo=${environment.logoutRedirectURI}&client_id=${environment.clientId}`;
+  }
 }

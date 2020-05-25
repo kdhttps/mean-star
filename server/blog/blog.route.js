@@ -11,7 +11,6 @@ router.route('/user')
     .get(blogController.getMyBlogs);
 
 router.route('/:id')
-    .put(validate(validationSchema.blogUpdate), blogController.update)
-    .get(validate(validationSchema.blogGetById), blogController.getBlogById);
+    .put(validate(validationSchema.blogUpdate), blogController.update);
 
 module.exports = router;

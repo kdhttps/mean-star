@@ -26,4 +26,8 @@ export class HeaderComponent implements OnInit {
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
   }
+
+  logout() {
+    this.authService.logout();
+  }
 }

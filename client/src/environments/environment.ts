@@ -12,7 +12,8 @@ export const environment = {
   opServerExtraParamsInAuthRequest: {
     audience: 'https://kdhttps.auth0.com/api/v2/'
   },
-  redirectURI: 'http://localhost:3000/callback',
+  redirectURI: 'http://localhost:4200/callback',
+  logoutRedirectURI: 'http://localhost:4200',
   scope: 'openid email profile',
 };
 

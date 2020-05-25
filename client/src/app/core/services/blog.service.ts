@@ -30,7 +30,7 @@ export class BlogService {
   }
 
   getById(id: String): Observable<Blog[]> {
-    return this.apiService.get(`${environment.apiURL}${this._constant.blogEndpoint}/${id}`);
+    return this.apiService.get(`${environment.apiURL}${this._constant.blogEndpoint}/ls/${id}`);
   }
 
   save(blog: Blog): Observable<Blog> {

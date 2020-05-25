@@ -9,5 +9,6 @@ export const environment = {
     audience: 'https://kdhttps.auth0.com/api/v2/'
   },
   redirectURI: 'https://mean-stack.herokuapp.com/callback',
+  logoutRedirectURI: 'https://mean-stack.herokuapp.com',
   scope: 'openid email profile',
 };

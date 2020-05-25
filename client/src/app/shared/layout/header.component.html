@@ -17,6 +17,9 @@
       <li class="nav-item" *appShowAuthed="false">
         <a class="nav-link" routerLink="/login" [routerLinkActive]="'active'">Login</a>
       </li>
+      <li class="nav-item" *appShowAuthed="true">
+        <a class="nav-link" (click)="logout()" >Logout</a>
+      </li>
     </ul>
     <form class="form-inline mt-2 mt-md-0">
       <a class="btn btn-outline-success text-white mr-sm-2" href="https://github.com/kdhttps/mean-stack" target="_blank"><fa-icon [icon]="['fab', 'github']"></fa-icon></a>
