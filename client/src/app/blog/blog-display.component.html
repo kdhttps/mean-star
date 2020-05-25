@@ -2,6 +2,7 @@
   <div class="card text-secondary border-success mb-3">
     <div class="card-header">
       <h3>Blog Title</h3>
+      <h6 class="card-subtitle mb-2 text-muted"><fa-icon [icon]="['fas', 'edit']"></fa-icon> {{blog.publisher.name}}</h6>
     </div>
     <div class="card-body">
       <markdown class="variable-binding" [data]="blog.content"></markdown>

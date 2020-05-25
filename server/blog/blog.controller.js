@@ -66,7 +66,7 @@ async function getMyBlogs(req, res) {
 
 async function getBlogs(req, res) {
   try {
-    const blogs = await blog.find({ status: 'PUBLISHED' });
+    const blogs = await blog.find({ status: 'PUBLISHED' }).populate('publisher', 'email name -_id');
     return res.send(blogs);
   } catch (error) {
     __logger.error(error);
@@ -76,7 +76,7 @@ async function getBlogs(req, res) {
 
 async function getBlogById(req, res) {
   try {
-    const oBlog = await blog.findById(req.params.id);
+    const oBlog = await blog.findById(req.params.id).populate('publisher', 'email name -_id');
     return res.send(oBlog);
   } catch (error) {
     __logger.error(error);

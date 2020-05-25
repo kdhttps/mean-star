@@ -10,6 +10,7 @@
         <div class="card text-secondary border-success mb-3">
           <div class="card-header">
             <h3>{{blog.title}}</h3>
+            <h6 class="card-subtitle mb-2 text-muted"><fa-icon [icon]="['fas', 'edit']"></fa-icon> {{blog.publisher.name}}</h6>
           </div>
           <div class="card-body">
             <p class="card-text">{{blog.content.length > 300 ? blog.content.substr(0, 300) : blog.content}} ...</p>
