@@ -47,9 +47,8 @@ npm start
 
 ## Deploy on Heroku
 
-1. 
-
 ```
+heroku container:login
 heroku container:push [image-name] -a [your-app-name]
-
+heroku container:release [image-name] -a [your-app-name]
 ```
