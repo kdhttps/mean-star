@@ -13,7 +13,9 @@ const userSchema = mongoose.Schema({
   },
   status: {
     type: String,
-    required: true
+    required: true,
+    enum: ['INACTIVE', 'ACTIVE'],
+    default: 'INACTIVE',
   },
   lastLoginTime: {
     type: Date,

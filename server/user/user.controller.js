@@ -19,13 +19,16 @@ async function login(req, res) {
 
     const response = await got(option);
     const userInfo = response.body;
+    console.log(userInfo)
     const oUser = await user.findOne({email: userInfo.email});
     let savedUser = null;
 
     if (oUser) {
       __logger.debug('User update operation');
-      oUser.name = userInfo.name || oUser.name;
-      oUser.email = userInfo.email || oUser.email;
+      oUser.name = userInfo.name;
+      oUser.email = userInfo.email;
+      oUser.status = userInfo.email_verified ? 'ACTIVE' : 'INACTIVE';
+
       oUser.lastLoginTime = Date.now();
       if (oUser.authTokens.indexOf(authToken) < 0) {
         oUser.authTokens.push(authToken)
@@ -36,7 +39,7 @@ async function login(req, res) {
       const newUser = new user({
         name: userInfo.name,
         email: userInfo.email,
-        status: 'active',
+        status: userInfo.email_verified ? 'ACTIVE' : 'INACTIVE',
         authTokens: [authToken]
       });
       savedUser = await newUser.save();

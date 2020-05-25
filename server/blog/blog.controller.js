@@ -5,6 +5,11 @@ async function save(req, res) {
   try {
     const body = req.body;
     const userId = req.user._id;
+    const userStatus = req.user.status;
+    
+    if(userStatus === "INACTIVE") {
+      return res.status(403).send({message: 'Your accound is not verified, Please verify your email!'});
+    }
 
     __logger.debug('Blog add operation');
     const oBlog = new blog({
@@ -34,6 +39,12 @@ async function save(req, res) {
 
 async function update(req, res) {
   try {
+    const userStatus = req.user.status;
+    
+    if(userStatus === "INACTIVE") {
+      return res.status(403).send({message: 'Your accound is not verified, Please verify your email!'});
+    }
+    
     const body = req.body;
 
     __logger.debug('Blog update operation');
