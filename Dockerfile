@@ -23,6 +23,6 @@ COPY ./client ./client
 
 # Build client
 RUN npm install -g @angular/cli@8.3.20
-RUN cd ./client && ng build && cp -R dist/client ../
+RUN cd ./client && ng build --prod && cp -R dist/client ../
 
 ENTRYPOINT [ "npm", "start" ]

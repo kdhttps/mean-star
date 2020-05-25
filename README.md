@@ -44,3 +44,12 @@ npm start
 ```sh
 npm start
 ```
+
+## Deploy on Heroku
+
+1. 
+
+```
+heroku container:push [image-name] -a [your-app-name]
+
+```
