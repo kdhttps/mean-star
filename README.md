@@ -2,11 +2,25 @@
 
 ![template](https://user-images.githubusercontent.com/39133739/82898842-90f32580-9f77-11ea-92f1-67aa09cfcdb4.png)
 
-**MEAN STAR** is a starter application which helps you to easily start your project development with MEAN Stack technology. This project is mainly focused on the Security, integrated [OpenID Connect OAuth 2.0](https://www.oauth.com/oauth2-servers/openid-connect/) [Authorization Code PKCE Flow](https://developers.onelogin.com/openid-connect/guides/auth-flow-pkce) and [jwks jwt verification](https://auth0.com/docs/tokens/concepts/jwks). It uses the [AppAuth-JS](https://github.com/openid/AppAuth-JS) which provide the very generic facility to integrate [Authorization Code PKCE Flow](https://developers.onelogin.com/openid-connect/guides/auth-flow-pkce) with any Single-page Application(**SPA**) technology and with Any OpenID Connect Provider. 
+**MEAN STAR** is a starter application that helps you to easily start your project development with MEAN Stack technology. This project is mainly focused on the Security, integrated [OpenID Connect OAuth 2.0](https://www.oauth.com/oauth2-servers/openid-connect/) [Authorization Code PKCE Flow](https://developers.onelogin.com/openid-connect/guides/auth-flow-pkce) and [jwks jwt verification](https://auth0.com/docs/tokens/concepts/jwks). It uses the [AppAuth-JS](https://github.com/openid/AppAuth-JS) which provides the very generic facility to integrate [Authorization Code PKCE Flow](https://developers.onelogin.com/openid-connect/guides/auth-flow-pkce) with any Single-page Application(**SPA**) technology and with Any OpenID Connect Provider. 
 
 There are so many OpenID Connect Provider. For Example: auth0, okta, keyclock, google, onelogin, gluu, etc...
 
 Currently I am using [**auth0.com**](https://auth0.com). It is a good OpenID Connect provider. You can create free developer accound and test.
+
+# Live
+
+[https://mean-star.herokuapp.com](https://mean-star.herokuapp.com).
+
+
+# Features
+1. Integrated [AppAuth-JS](https://github.com/openid/AppAuth-JS) at front-end Application.
+1. [OpenID Connect OAuth 2.0](https://www.oauth.com/oauth2-servers/openid-connect/) [Authorization Code PKCE Flow](https://developers.onelogin.com/openid-connect/guides/auth-flow-pkce) for Client Front-end Application.
+1. Protected API using [jwks jwt verification](https://auth0.com/docs/tokens/concepts/jwks)
+1. OpenID Connect OAuth 2.0 integration with any OP Providers.
+1. User and token mapping and managing user sessions using [lru-cache](https://www.npmjs.com/package/lru-cache).
+1. Production and development logger, helps to debug problems in production.
+1. Dockerfile and docker-compose for easy development and deployment.
 
 # Versions
 
@@ -163,10 +177,6 @@ heroku container:login
 heroku container:push [image-name] -a [your-app-name]
 heroku container:release [image-name] -a [your-app-name]
 ```
-
-# Live
-
-[https://mean-star.herokuapp.com](https://mean-star.herokuapp.com).
 
 # Liecnse
 
