@@ -117,6 +117,17 @@ For development,
 npm run dev
 ```
 
+## Docker
+
+For development
+
+```sh
+docker-compose build
+docker-compose up
+```
+
+If you want to stop docker then press `ctrl + c + c`, `docker-compose down`.
+
 # Deploy
 
 There are many ways to deploy the application.
@@ -167,6 +178,22 @@ Follow Below steps to deploy on Nginx:
 1. Start your node app using PM2. No need to set a production flag.
 1. Added a Proxy Pass configuration for Node Application so that your front-end app can call it.
 
+## Deploy using docker
+
+Docker makes our task very easy. You need to install **docker** and **docker compose** on server.
+
+Follow below steps for deploy using docker
+
+1. Install **docker** and **docker compose**.
+1. Configure `.env` and `environment.prod.ts`.
+1. Build the docker image
+      ```sh
+      docker-compose build
+      ``` 
+1. Run docker
+      ```sh
+      docker-compose up
+      ```
 
 ## Deploy on Heroku
 
