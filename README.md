@@ -1,10 +1,12 @@
-# MEAN-STACK
+# MEAN-STAR
 
-MEAN STACK demo application which help you to easily start your project development with MEAN Stack technology. This project is mainly focused on the Security, integrated **OAuth 2.0** Authorization Code PKCE Flow and jwks jwt verification. It uses the [AppAuth-JS](https://github.com/openid/AppAuth-JS) which provide the very generic facility to integrate **Authorization code PKCE flow** with any Single page Application(**SPA**) technology and with Any OpenID Connect Provider. 
+![template](https://user-images.githubusercontent.com/39133739/82898842-90f32580-9f77-11ea-92f1-67aa09cfcdb4.png)
+
+**MEAN STAR** is a starter application which helps you to easily start your project development with MEAN Stack technology. This project is mainly focused on the Security, integrated [OpenID Connect OAuth 2.0](https://www.oauth.com/oauth2-servers/openid-connect/) [Authorization Code PKCE Flow](https://developers.onelogin.com/openid-connect/guides/auth-flow-pkce) and [jwks jwt verification](https://auth0.com/docs/tokens/concepts/jwks). It uses the [AppAuth-JS](https://github.com/openid/AppAuth-JS) which provide the very generic facility to integrate [Authorization Code PKCE Flow](https://developers.onelogin.com/openid-connect/guides/auth-flow-pkce) with any Single-page Application(**SPA**) technology and with Any OpenID Connect Provider. 
 
 There are so many OpenID Connect Provider. For Example: auth0, okta, keyclock, google, onelogin, gluu, etc...
 
-Currently I am using **auth0.com**. It is good OpenID Connect provider. You can create free developer accound and test.
+Currently I am using [**auth0.com**](https://auth0.com). It is a good OpenID Connect provider. You can create free developer accound and test.
 
 # Versions
 
@@ -101,6 +103,57 @@ For development,
 npm run dev
 ```
 
+# Deploy
+
+There are many ways to deploy the application.
+
+## Deploy using **PM2**
+
+[PM2](https://www.npmjs.com/package/pm2) is a production process manager for Node.js applications with a built-in load balancer. It allows you to keep applications alive forever, to reload them without downtime and to facilitate common system admin tasks.
+
+Follow the below steps for production:
+
+1. Clone or move your code to server and install node_modules.
+
+1. Install PM2
+      ```sh
+     npm i -g pm2
+      ```
+
+1. Make an angular production build.
+      ```sh
+      cd client
+      ng build --prod
+      ```
+
+1. Move `client/dist/client` folder to `server/` so that node application serve it.
+      ```sh
+      cp -R client/dist/client server/
+      ```
+1. Start PM2 service. which runs your application in the background.
+      ```sh
+      export PRODUCTION=true # or you can add this in .env
+      pm2 start index.js
+      ```
+
+## Deploy on NGINX
+
+Angular is a front-end client application and deploy the client application on standard HTTP Server has several benefits. Please check here for [more details](https://stackoverflow.com/a/56302977/11286367).
+
+Follow Below steps to deploy on Nginx:
+
+1. Install NGINX Http Server
+1. Clone or move your code on server and install node_modules.
+1. Make an angular production build.
+      ```sh
+      cd client
+      ng build --prod
+      ```
+1. Move `/client/dist/client/*` all files into `/var/www/html`
+1. Start your node app using PM2. No need to set a production flag.
+1. Added a Proxy Pass configuration for Node Application so that your front-end app can call it.
+
+
 ## Deploy on Heroku
 
 First `create a new App` using Heroku dashboard and then follow the below step to build and deploy image on Heroku
@@ -111,10 +164,10 @@ heroku container:push [image-name] -a [your-app-name]
 heroku container:release [image-name] -a [your-app-name]
 ```
 
-## Live
+# Live
 
 [https://mean-star.herokuapp.com](https://mean-star.herokuapp.com).
 
-## Liecnse
+# Liecnse
 
-MIT 
+[MIT](https://raw.githubusercontent.com/kdhttps/mean-star/master/LICENSE)
