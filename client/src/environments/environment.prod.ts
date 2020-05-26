@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiURL: 'https://mean-stack.herokuapp.com',
+  apiURL: 'https://mean-star.herokuapp.com',
   // OP Server configuration
   clientId: 'xGZxEAJhzlkuQUlWl90y1ntIX-0UDWHx',
   opServer: 'https://kdhttps.auth0.com',
@@ -8,7 +8,7 @@ export const environment = {
   opServerExtraParamsInAuthRequest: {
     audience: 'https://kdhttps.auth0.com/api/v2/'
   },
-  redirectURI: 'https://mean-stack.herokuapp.com/callback',
-  logoutRedirectURI: 'https://mean-stack.herokuapp.com',
+  redirectURI: 'https://mean-star.herokuapp.com/callback',
+  logoutRedirectURI: 'https://mean-star.herokuapp.com',
   scope: 'openid email profile',
 };
