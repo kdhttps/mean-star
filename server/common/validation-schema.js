@@ -35,6 +35,11 @@ const schemas = {
       id: Joi.string().required(),
     }),
   },
+  blogGetByPublisherId: {
+    params: Joi.object({
+      id: Joi.string().required(),
+    }),
+  },
   userSAVE: {
     body: Joi.object({
       name: Joi.string().required(),

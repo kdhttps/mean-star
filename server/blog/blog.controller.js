@@ -83,7 +83,8 @@ async function update(req, res) {
 async function getMyBlogs(req, res) {
   try {
     const userId = req.user._id;
-    __logger.debug('Get My Blogs ', userId);
+    __logger.debug('Get My Blogs ');
+    __logger.debug(userId);
     const blogs = await blog.find({ publisher: userId });
     return res.send(blogs);
   } catch (error) {
@@ -113,10 +114,21 @@ async function getBlogById(req, res) {
   }
 }
 
+async function getBlogByPublisherId(req, res) {
+  try {
+    const oBlog = await blog.find({publisher: req.params.id, status: 'PUBLISHED'}).populate('publisher', 'email name -_id').sort({updatedAt: -1});
+    return res.send(oBlog);
+  } catch (error) {
+    __logger.error(error);
+    return res.status(500).send(error);
+  }
+}
+
 module.exports = {
   save,
   update,
   getMyBlogs,
   getBlogs,
   getBlogById,
+  getBlogByPublisherId,
 };

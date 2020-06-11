@@ -16,6 +16,7 @@ router.get('/health-check', (req, res) => res.status(200).send({
 // public routes
 router.get('/blogs/ls', blogController.getBlogs);
 router.get('/blogs/ls/:id', validate(validationSchema.blogGetById), blogController.getBlogById);
+router.get('/blogs/publisher/:id', validate(validationSchema.blogGetByPublisherId), blogController.getBlogByPublisherId);
 
 // protected routes
 router.use('/users', authCheck, userRoute);
