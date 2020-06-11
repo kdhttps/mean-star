@@ -12,11 +12,19 @@ async function save(req, res) {
     }
 
     __logger.debug('Blog add operation');
+
+    const seoMeta = body.seoMeta;
     const oBlog = new blog({
       title: body.title,
       content: body.content,
       status: body.status,
       publisher: userId,
+      seoMeta: {
+        image: seoMeta.image,
+        url: seoMeta.url,
+        description: seoMeta.description,
+        title: seoMeta.title,
+      }
     });
     const saveBlog = await oBlog.save();
 
@@ -52,6 +60,16 @@ async function update(req, res) {
     oBlog.title = body.title || oBlog.title;
     oBlog.content = body.content || oBlog.content;
     oBlog.status = body.status || oBlog.status;
+
+    const bodySeoMeta = body.seoMeta;
+    const blogSeoMeta = oBlog.seoMeta;
+
+    oBlog.seoMeta = {
+      image: blogSeoMeta.image || bodySeoMeta.image,
+      url: blogSeoMeta.url || bodySeoMeta.url,
+      description: blogSeoMeta.description || bodySeoMeta.description,
+      title: blogSeoMeta.title || bodySeoMeta.title,
+    }
 
     const saveBlog = await oBlog.save();
 

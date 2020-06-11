@@ -2,18 +2,55 @@
   <div class="card">
     <div class="card-body">
       <form [formGroup]="blogForm">
-        <div class="form-group">
-          <input class="form-control form-control-lg mb-2 mr-sm-2" formControlName="title" type="text" placeholder="Enter title"/>
+        <div class="form-group"> Title
+          <input class="form-control form-control-lg mb-2 mr-sm-2" formControlName="title" type="text"
+            placeholder="Enter title" />
         </div>
         <div class="form-group">
-          <textarea class="form-control form-control-lg mb-2 mr-sm-2" formControlName="content" placeholder="Enter description" rows="3"></textarea> 
-        </div>
-        <div class="form-group">
+          Publish
           <select class="form-control form-control-lg" formControlName="status">
             <option *ngFor="let s of blogStatus" value="{{s}}">{{s}}</option>
           </select>
         </div>
-        <button class="btn btn-success" (click)="submitForm()">{{this.blog._id ? 'Update' : 'Add'}}</button>
+        <div formGroupName="seoMeta">
+          <div class="form-group">
+            Meta Image URL
+            <input class="form-control form-control-lg mb-2 mr-sm-2" formControlName="image" type="text"
+              placeholder="Enter meta image URL" />
+          </div>
+          <div class="form-group">
+            Meta URL
+            <input class="form-control form-control-lg mb-2 mr-sm-2" formControlName="url" type="text"
+              placeholder="Enter meta url" />
+          </div>
+          <div class="form-group">
+            Meta Description
+            <input class="form-control form-control-lg mb-2 mr-sm-2" formControlName="description" type="text"
+              placeholder="Enter meta description" />
+          </div>
+          <div class="form-group">
+            Meta Title
+            <input class="form-control form-control-lg mb-2 mr-sm-2" formControlName="title" type="text"
+              placeholder="Enter meta title" />
+          </div>
+        </div>
+        <div class="form-group">
+          Content
+          <textarea class="form-control form-control-lg mb-2 mr-sm-2" formControlName="content"
+            placeholder="Enter description" rows="15"></textarea>
+        </div>
+        
+        <button class="col-sm-6 center btn btn-success" (click)="submitForm()">{{this.blog._id ? 'Update' : 'Add'}}</button>
+
+        <div class="card text-secondary border-success mt-3">
+          <div class="card-header">
+            <h3>Preview</h3>
+          </div>
+          <div class="card-body">
+            <markdown class="variable-binding" [data]="blogForm.value.content"></markdown>
+          </div>
+        </div>
+
       </form>
     </div>
   </div>

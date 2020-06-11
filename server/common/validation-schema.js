@@ -6,6 +6,12 @@ const schemas = {
       title: Joi.string().required(),
       content: Joi.string().required(),
       status: Joi.string().required(),
+      seoMeta: {
+        image: Joi.string().required(),
+        url: Joi.string().required(),
+        description: Joi.string().required(),
+        title: Joi.string().required(),
+      },
     }),
   },
   blogUpdate: {
@@ -16,6 +22,12 @@ const schemas = {
       title: Joi.string().required(),
       content: Joi.string().required(),
       status: Joi.string().required(),
+      seoMeta: {
+        image: Joi.string().required(),
+        url: Joi.string().required(),
+        description: Joi.string().required(),
+        title: Joi.string().required(),
+      },
     }),
   },
   blogGetById: {

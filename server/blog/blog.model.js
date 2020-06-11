@@ -26,6 +26,24 @@ const blogSchema = mongoose.Schema({
   }],
   publishedAt: {
     type: Date,
+  },
+  seoMeta: {
+    image: {
+      type: String,
+      required: true,
+    },
+    url: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
   }
 }, {
   timestamps: true

@@ -23,10 +23,18 @@ export class BlogManageComponent implements OnInit {
   ) {
     const historyBlog = history.state.data;
     if(historyBlog && historyBlog._id) {
+      const seoMeta = historyBlog.seoMeta;
+
       this.blogForm = this.fb.group({
         title: historyBlog.title,
         content: historyBlog.content,
         status: historyBlog.status,
+        seoMeta: this.fb.group({
+          image: seoMeta && seoMeta.image,
+          url: seoMeta && seoMeta.url,
+          description: seoMeta && seoMeta.description,
+          title: seoMeta && seoMeta.title,
+        })
       });
       this.blog._id = historyBlog._id;
     } else {
@@ -34,6 +42,12 @@ export class BlogManageComponent implements OnInit {
         title: '',
         content: '',
         status: 'UNPUBLISHED',
+        seoMeta: this.fb.group({
+          image: '',
+          url: '',
+          description: '',
+          title: '',
+        }),
       });
     }
    }
@@ -50,6 +64,12 @@ export class BlogManageComponent implements OnInit {
           title: '',
           content: '',
           status: 'UNPUBLISHED',
+          seoMeta: {
+            image: '',
+            url: '',
+            description: '',
+            title: '',
+          },
         });
         this.toastService.show(this.message.add(this.message.blog), { classname: 'bg-success text-light' });
         this.router.navigate(['/blog']);
@@ -59,6 +79,12 @@ export class BlogManageComponent implements OnInit {
           title: '',
           content: '',
           status: 'UNPUBLISHED',
+          seoMeta: {
+            image: '',
+            url: '',
+            description: '',
+            title: '',
+          },
         });
       });
   }
