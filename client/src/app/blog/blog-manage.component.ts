@@ -34,6 +34,7 @@ export class BlogManageComponent implements OnInit {
           url: seoMeta && seoMeta.url,
           description: seoMeta && seoMeta.description,
           title: seoMeta && seoMeta.title,
+          keywords: seoMeta && seoMeta.keywords,
         })
       });
       this.blog._id = historyBlog._id;
@@ -47,6 +48,7 @@ export class BlogManageComponent implements OnInit {
           url: '',
           description: '',
           title: '',
+          keywords: '',
         }),
       });
     }
@@ -69,6 +71,7 @@ export class BlogManageComponent implements OnInit {
             url: '',
             description: '',
             title: '',
+            keywords: '',
           },
         });
         this.toastService.show(this.message.add(this.message.blog), { classname: 'bg-success text-light' });
@@ -84,6 +87,7 @@ export class BlogManageComponent implements OnInit {
             url: '',
             description: '',
             title: '',
+            keywords: '',
           },
         });
       });

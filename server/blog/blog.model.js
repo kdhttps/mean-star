@@ -44,6 +44,10 @@ const blogSchema = mongoose.Schema({
       type: String,
       required: true,
     },
+    keywords: {
+      type: String,
+      required: true,
+    },
   }
 }, {
   timestamps: true
