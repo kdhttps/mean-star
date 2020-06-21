@@ -66,11 +66,11 @@ async function update(req, res) {
     const blogSeoMeta = oBlog.seoMeta;
 
     oBlog.seoMeta = {
-      image: blogSeoMeta.image || bodySeoMeta.image,
-      url: blogSeoMeta.url || bodySeoMeta.url,
-      description: blogSeoMeta.description || bodySeoMeta.description,
-      title: blogSeoMeta.title || bodySeoMeta.title,
-      keywords: blogSeoMeta.keywords || bodySeoMeta.keywords,
+      image: bodySeoMeta.image || blogSeoMeta.image,
+      url: bodySeoMeta.url || blogSeoMeta.url,
+      description: bodySeoMeta.description || blogSeoMeta.description,
+      title: bodySeoMeta.title || blogSeoMeta.title,
+      keywords: bodySeoMeta.keywords || blogSeoMeta.keywords,
     }
 
     const saveBlog = await oBlog.save();
