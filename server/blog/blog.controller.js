@@ -114,6 +114,16 @@ async function getBlogById(req, res) {
   }
 }
 
+async function getBlogByTitle(req, res) {
+  try {
+    const oBlog = await blog.findOne({title: req.params.title}).populate('publisher', 'email name -_id');
+    return res.send(oBlog);
+  } catch (error) {
+    __logger.error(error);
+    return res.status(500).send(error);
+  }
+}
+
 async function getBlogByPublisherId(req, res) {
   try {
     const oBlog = await blog.find({publisher: req.params.id, status: 'PUBLISHED'}).populate('publisher', 'email name -_id').sort({updatedAt: -1});
@@ -130,5 +140,6 @@ module.exports = {
   getMyBlogs,
   getBlogs,
   getBlogById,
+  getBlogByTitle,
   getBlogByPublisherId,
 };
