@@ -18,8 +18,17 @@ const userController = require('./user/user.controller');
 /**
  * allow cors for only our frontend
  */
+const whitelistCors = JSON.parse(process.env.CORS_ORIGIN);
 var corsOptions = {
-  origin: process.env.CORS_ORIGIN,
+  origin: {
+    origin: function (origin, callback) {
+      if (whitelistCors.indexOf(origin) !== -1) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    }
+  },
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 app.use(cors(corsOptions));
@@ -37,7 +46,7 @@ app.use(expressWinston.logger(configuration.Logger));
 /**
  * Mongo DB Connection
  */
-mongoose.connect(process.env.DB_URL, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true}, (err, res) => {
+mongoose.connect(process.env.DB_URL, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, (err, res) => {
   if (err) {
     __logger.info(`err connecting to db on ${process.env.DB_URL}, err: ${err}`);
   } else {
@@ -47,8 +56,8 @@ mongoose.connect(process.env.DB_URL, {useUnifiedTopology: true, useNewUrlParser:
 
 // Load body parser
 app.use(bodyParser.json());
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 authCheck = jwt({
   secret: jwks.expressJwtSecret({
@@ -77,15 +86,15 @@ app.use(expressWinston.errorLogger(configuration.Logger));
 // Statically serve client
 if (process.env.PRODUCTION) {
   app.use(express.static(__dirname + '/client'));
-  app.get('/*', function(req,res) {
-    res.sendFile(path.join(__dirname+'/client/index.html'));
+  app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname + '/client/index.html'));
   });
 }
 
 /**
  * Handle errors
  */
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   if (err instanceof ValidationError) {
     return res.status(err.statusCode).json(err)
   }

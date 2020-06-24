@@ -33,13 +33,18 @@
             <input class="form-control form-control-lg mb-2 mr-sm-2" formControlName="title" type="text"
               placeholder="Enter meta title" />
           </div>
+          <div class="form-group">
+            Meta Keywords Tags
+            <input class="form-control form-control-lg mb-2 mr-sm-2" formControlName="keywords" type="text"
+              placeholder="Enter meta keywords" />
+          </div>
         </div>
         <div class="form-group">
           Content
           <textarea class="form-control form-control-lg mb-2 mr-sm-2" formControlName="content"
             placeholder="Enter description" rows="15"></textarea>
         </div>
-        
+
         <button class="col-sm-6 center btn btn-success" (click)="submitForm()">{{this.blog._id ? 'Update' : 'Add'}}</button>
 
         <div class="card text-secondary border-success mt-3">

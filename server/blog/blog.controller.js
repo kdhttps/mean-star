@@ -6,7 +6,7 @@ async function save(req, res) {
     const body = req.body;
     const userId = req.user._id;
     const userStatus = req.user.status;
-    
+
     if(userStatus === "INACTIVE") {
       return res.status(403).send({message: 'Your accound is not verified, Please verify your email!'});
     }
@@ -24,6 +24,7 @@ async function save(req, res) {
         url: seoMeta.url,
         description: seoMeta.description,
         title: seoMeta.title,
+        keywords: seoMeta.keywords,
       }
     });
     const saveBlog = await oBlog.save();
@@ -48,11 +49,11 @@ async function save(req, res) {
 async function update(req, res) {
   try {
     const userStatus = req.user.status;
-    
+
     if(userStatus === "INACTIVE") {
       return res.status(403).send({message: 'Your accound is not verified, Please verify your email!'});
     }
-    
+
     const body = req.body;
 
     __logger.debug('Blog update operation');
@@ -65,10 +66,11 @@ async function update(req, res) {
     const blogSeoMeta = oBlog.seoMeta;
 
     oBlog.seoMeta = {
-      image: blogSeoMeta.image || bodySeoMeta.image,
-      url: blogSeoMeta.url || bodySeoMeta.url,
-      description: blogSeoMeta.description || bodySeoMeta.description,
-      title: blogSeoMeta.title || bodySeoMeta.title,
+      image: bodySeoMeta.image || blogSeoMeta.image,
+      url: bodySeoMeta.url || blogSeoMeta.url,
+      description: bodySeoMeta.description || blogSeoMeta.description,
+      title: bodySeoMeta.title || blogSeoMeta.title,
+      keywords: bodySeoMeta.keywords || blogSeoMeta.keywords,
     }
 
     const saveBlog = await oBlog.save();
