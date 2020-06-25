@@ -121,7 +121,7 @@ async function getBlogById(req, res) {
 
 async function getBlogByTitle(req, res) {
   try {
-    const oBlog = await blog.findOne({title: req.params.title}).populate('publisher', 'email name -_id');
+    const oBlog = await blog.findOne({lowerTitle: req.params.title}).populate('publisher', 'email name -_id');
     return res.send(oBlog);
   } catch (error) {
     __logger.error(error);
