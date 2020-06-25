@@ -63,7 +63,7 @@ async function update(req, res) {
     oBlog.content = body.content || oBlog.content;
     oBlog.status = body.status || oBlog.status;
 
-    oBlog.lowerTitle = oBlog.title.toLowerCase(),
+    oBlog.lowerTitle = oBlog.title.toLowerCase();
 
     const bodySeoMeta = body.seoMeta;
     const blogSeoMeta = oBlog.seoMeta;
