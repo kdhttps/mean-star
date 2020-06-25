@@ -16,6 +16,7 @@ async function save(req, res) {
     const seoMeta = body.seoMeta;
     const oBlog = new blog({
       title: body.title,
+      lowerTitle: body.title.toLowerCase(),
       content: body.content,
       status: body.status,
       publisher: userId,
@@ -61,6 +62,8 @@ async function update(req, res) {
     oBlog.title = body.title || oBlog.title;
     oBlog.content = body.content || oBlog.content;
     oBlog.status = body.status || oBlog.status;
+
+    oBlog.lowerTitle = oBlog.title.toLowerCase(),
 
     const bodySeoMeta = body.seoMeta;
     const blogSeoMeta = oBlog.seoMeta;
