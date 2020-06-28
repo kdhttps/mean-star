@@ -30,14 +30,14 @@ export class BlogService {
   }
 
   getById(id: String): Observable<Blog[]> {
-    return this.apiService.get(`${environment.apiURL}${this._constant.blogEndpoint}/ls/${id}`);
+    return this.apiService.get(`${environment.apiURL}${this._constant.blogEndpoint}/ls/id/${id}`);
   }
 
   save(blog: Blog): Observable<Blog> {
     const id = blog._id;
     delete blog._id;
     if (id) {
-      return this.apiService.put(`${environment.apiURL}${this._constant.blogEndpoint}/${id}`, blog);  
+      return this.apiService.put(`${environment.apiURL}${this._constant.blogEndpoint}/${id}`, blog);
     }
     return this.apiService.post(environment.apiURL + this._constant.blogEndpoint, blog);
   }
