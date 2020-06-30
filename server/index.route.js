@@ -23,5 +23,4 @@ router.get('/blogs/publisher/:id', validate(validationSchema.blogGetByPublisherI
 router.use('/users', authCheck, userRoute);
 router.use('/blogs', authCheck, blogRoute);
 
-
 module.exports = router;

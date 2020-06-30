@@ -110,3 +110,5 @@ server.listen(configuration.PORT || 3000, () => {
   __logger.info(`Server started successfully!, Open this URL http://localhost:${configuration.PORT || 3000}`);
   __logger.info('-----------------------');
 });
+
+module.exports = server;
