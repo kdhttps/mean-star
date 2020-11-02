@@ -7,7 +7,7 @@
     "dev": "nodemon index.js",
     "start": "node index.js",
     "test": "nyc mocha --require test/bootstrap.js **/*.test.js",
-    "generate-report": "nyc report --reporter=text-lcov > coverage.lcov"
+    "generate-coverage": "nyc report --reporter=text-lcov > coverage.lcov"
   },
   "keywords": [
     "node"
