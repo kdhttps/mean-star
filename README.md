@@ -21,6 +21,7 @@ Currently I am using [**auth0.com**](https://auth0.com). It is a good OpenID Con
 1. User and token mapping and managing user sessions using [lru-cache](https://www.npmjs.com/package/lru-cache).
 1. Production and development logger, helps to debug problems in production.
 1. Dockerfile and docker-compose for easy development and deployment.
+1. Added CodeCov
 
 # Versions
 
