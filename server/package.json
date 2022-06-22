@@ -22,7 +22,7 @@
     "express-jwt": "^5.3.1",
     "express-validation": "^3.0.2",
     "express-winston": "^4.0.3",
-    "got": "^10.7.0",
+    "got": "^11.8.5",
     "jwks-rsa": "^1.7.0",
     "lru-cache": "^5.1.1",
     "mongoose": "^5.9.4",
